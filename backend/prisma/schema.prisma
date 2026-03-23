@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  histories History[]
+  apiKeys   ApiKey[]
+  articles  Article[]
+}
+
+model History {
+  id        String   @id @default(uuid())
+  toolName  String
+  action    String
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ApiKey {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
+model Article {
+  id          String        @id @default(uuid())
+  title       String
+  slug        String        @unique
+  category    String
+  content     String        @db.Text
+  coverImage  String?
+  status      ArticleStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  authorId    String
+  author      User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model SiteSettings {
+  id          Int      @id @default(1)
+  siteName       String   @default("Web Tools Hub")
+  siteLogoUrl    String?
+  siteFaviconUrl String?
+  createdAt      DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

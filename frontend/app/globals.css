@@ -1,0 +1,329 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------
+   Custom dark variant (required by shadcn/ui v4)
+---------------------------------------------------------------- */
+@custom-variant dark (&:is(.dark *));
+
+/* ----------------------------------------------------------------
+   LIGHT MODE
+   Warm parchment base + emerald accent
+   Matches the CSS variable names used in page.tsx, navbar, footer,
+   dashboard, and all redesigned components.
+---------------------------------------------------------------- */
+:root {
+  /* radius */
+  --radius: 0.75rem;
+
+  /* core surfaces */
+  --background: #ffffff;
+  /* pure white */
+  --foreground: oklch(0.14 0.012 85);
+  /* #1a1a14 warm near-black */
+
+  /* card */
+  --card: oklch(1 0 0);
+  /* #ffffff */
+  --card-foreground: oklch(0.14 0.012 85);
+
+  /* popover */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.14 0.012 85);
+
+  /* primary = emerald */
+  --primary: oklch(0.59 0.148 162);
+  /* #059669 */
+  --primary-foreground: oklch(1 0 0);
+
+  /* secondary = warm surface */
+  --secondary: oklch(0.94 0.014 85);
+  /* #f0ede6 */
+  --secondary-foreground: oklch(0.25 0.014 85);
+
+  /* muted = slightly darker warm surface */
+  --muted: oklch(0.93 0.016 85);
+  /* #edeae1 */
+  --muted-foreground: oklch(0.50 0.016 85);
+
+  /* accent = emerald tint */
+  --accent: oklch(0.94 0.014 85);
+  --accent-foreground: oklch(0.25 0.014 85);
+
+  /* destructive = rose */
+  --destructive: oklch(0.62 0.22 25);
+  /* #ef4444 */
+  --destructive-foreground: oklch(1 0 0);
+
+  /* borders & inputs */
+  --border: oklch(0.91 0.012 85);
+  --input: oklch(0.91 0.012 85);
+  --ring: oklch(0.59 0.148 162);
+  /* emerald focus ring */
+
+  /* charts */
+  --chart-1: oklch(0.59 0.148 162);
+  /* emerald */
+  --chart-2: oklch(0.68 0.13 85);
+  /* amber-ish */
+  --chart-3: oklch(0.55 0.15 25);
+  /* rose */
+  --chart-4: oklch(0.72 0.16 165);
+  /* teal */
+  --chart-5: oklch(0.60 0.18 280);
+  /* violet (neutral) */
+
+  /* sidebar (dark sidebar in dashboard always uses its own tokens) */
+  --sidebar-background: #ffffff;
+  --sidebar-foreground: oklch(0.14 0.012 85);
+  --sidebar-primary: oklch(0.59 0.148 162);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.94 0.014 85);
+  --sidebar-accent-foreground: oklch(0.25 0.014 85);
+  --sidebar-border: oklch(0.91 0.012 85);
+  --sidebar-ring: oklch(0.59 0.148 162);
+}
+
+/* ----------------------------------------------------------------
+   DARK MODE
+   Warm near-black + brighter emerald
+---------------------------------------------------------------- */
+.dark {
+  /* core surfaces */
+  --background: #06070e;
+  /* Darker than footer bg #0d0e1a */
+  --foreground: #f0f0f5;
+
+  /* card */
+  --card: #0d0e1a;
+  /* Matches footer exactly */
+  --card-foreground: #f0f0f5;
+
+  /* popover */
+  --popover: #0d0e1a;
+  --popover-foreground: #f0f0f5;
+
+  /* primary = brighter emerald for dark bg */
+  --primary: oklch(0.70 0.148 162);
+  --primary-foreground: #06070e;
+
+  /* secondary */
+  --secondary: #13152a;
+  --secondary-foreground: #f0f0f5;
+
+  /* muted */
+  --muted: #13152a;
+  --muted-foreground: #8e95b3;
+
+  /* accent */
+  --accent: #13152a;
+  --accent-foreground: #f0f0f5;
+
+  /* destructive */
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+
+  /* borders & inputs */
+  --border: #1a1d33;
+  --input: #1a1d33;
+  --ring: oklch(0.70 0.148 162);
+  /* emerald focus ring */
+
+  /* charts */
+  --chart-1: oklch(0.70 0.148 162);
+  --chart-2: oklch(0.72 0.15 85);
+  --chart-3: oklch(0.68 0.18 25);
+  --chart-4: oklch(0.74 0.16 165);
+  --chart-5: oklch(0.64 0.20 280);
+
+  /* sidebar */
+  --sidebar-background: oklch(0.10 0.008 85);
+  --sidebar-foreground: oklch(0.95 0.008 85);
+  --sidebar-primary: oklch(0.70 0.148 162);
+  --sidebar-primary-foreground: oklch(0.10 0.005 85);
+  --sidebar-accent: oklch(0.16 0.010 85);
+  --sidebar-accent-foreground: oklch(0.95 0.008 85);
+  --sidebar-border: oklch(0.20 0.010 85);
+  --sidebar-ring: oklch(0.70 0.148 162);
+}
+
+/* ----------------------------------------------------------------
+   Tailwind @theme - maps CSS vars to Tailwind utility tokens
+   e.g. bg-primary, text-muted-foreground, border-border, etc.
+---------------------------------------------------------------- */
+@theme inline {
+  /* radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* fonts (loaded by layout.tsx) */
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-syne);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ----------------------------------------------------------------
+   Base styles
+---------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth theme transition on body background (set by layout.tsx) */
+body {
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+/* Accessible focus ring using the emerald ring token */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default margins on common elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Ensure images don't overflow their containers */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Consistent box model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------------
+   Scrollbar styling (Webkit browsers)
+   Thin, warm-toned, matches the dark surfaces
+---------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* ----------------------------------------------------------------
+   shadcn/ui Calendar dark mode fix
+   The Calendar component uses Tailwind classes that reference
+   --primary. In dark mode we override its selected day to use
+   the emerald token so it doesn't appear as a purple/blue dot.
+---------------------------------------------------------------- */
+.dark .rdp-day_selected,
+.dark .rdp-day_selected:hover {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+/* ----------------------------------------------------------------
+   shadcn/ui Select / Popover / Dialog backdrop
+   Keep popover backgrounds on the warm surface token
+---------------------------------------------------------------- */
+[data-radix-popper-content-wrapper] {
+  --popover: var(--card);
+}
+
+/* ----------------------------------------------------------------
+   TipTap editor - dark mode prose overrides
+   Used in articles new/edit pages
+---------------------------------------------------------------- */
+.dark .ProseMirror {
+  caret-color: var(--primary);
+}
+
+.dark .ProseMirror ::selection {
+  background: rgba(16, 185, 129, 0.22);
+}
+
+.ProseMirror ::selection {
+  background: rgba(5, 150, 105, 0.15);
+}
+
+/* ----------------------------------------------------------------
+   Utility: visually hidden (accessibility)
+---------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

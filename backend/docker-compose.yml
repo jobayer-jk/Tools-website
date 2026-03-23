@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: webtoolshub_db_cms
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: webtoolshub
+    ports:
+      - '5435:5432'
